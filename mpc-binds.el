@@ -47,9 +47,10 @@
 (defun mpc-bind--bind-mpc-commands ()
   "Bind mpc commands to a keymap, returning the keymap."
   (let ((keymap (make-sparse-keymap)))
-    (dolist (pair '(("p" . mpc-play)
-		    ("u" . mpc-update)
+    (dolist (pair '(("u" . mpc-update)
 		    ("a" . mpc-playlist-add)
+		    ("t" . mpc-select-toggle)
+		    ("e" . mpc-select-extend)
 		    ("d" . mpc-playlist-delete)
 		    ("l" . mpc-playlist)))
       (define-key keymap (car pair) (cdr pair)))
