@@ -31,14 +31,6 @@
   (interactive)
   (mpc-bind--select-window-by-buffer-name "*MPC Album|Playlists*"))
 
-(defun mpc-bind--bind-mpc-commands ()
-  "Bind mpc commands to a keymap, returning the keymap."
-  (let ((keymap (make-sparse-keymap)))
-    (dolist (pair '(("p" . mpc-play)
-		    ("u" . mpc-update)))
-      (define-key keymap (car pair) (cdr pair)))
-    keymap))
-
 (defun mpc-bind--find-window-by-buffer-name
     (windows name)
   "Select the widojws with a NAME in WINDOWS."
@@ -51,6 +43,17 @@
   "Select the window whose buffer is NAME."
   (when-let ((windows (mpc-bind--find-window-by-buffer-name (window-list) name)))
     (select-window (car windows))))
+
+(defun mpc-bind--bind-mpc-commands ()
+  "Bind mpc commands to a keymap, returning the keymap."
+  (let ((keymap (make-sparse-keymap)))
+    (dolist (pair '(("p" . mpc-play)
+		    ("u" . mpc-update)
+		    ("a" . mpc-playlist-add)
+		    ("d" . mpc-playlist-delete)
+		    ("l" . mpc-playlist)))
+      (define-key keymap (car pair) (cdr pair)))
+    keymap))
 
 (defun mpc-bind--bind-move-window
     ()
