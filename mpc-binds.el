@@ -7,11 +7,29 @@
 (require 'mpc)
 (require 'dash)
 
-(defun mpc-bind-select-genre
+(defun mpc-bind-genre
     ()
   "Select *MPC Genre* window."
   (interactive)
   (mpc-bind--select-window-by-buffer-name "*MPC Genres*"))
+
+(defun mpc-bind-songs
+    ()
+  "Select *MPC-Songs* window."
+  (interactive)
+  (mpc-bind--select-window-by-buffer-name "*MPC-Songs*"))
+
+(defun mpc-bind-artist
+    ()
+  "Select *MPC Artist|Composers|Performers* window."
+  (interactive)
+  (mpc-bind--select-window-by-buffer-name "*MPC Artist|Composer|Performers*"))
+
+(defun mpc-bind-playlists
+    ()
+  "Select *MPC Album|Playlists* window."
+  (interactive)
+  (mpc-bind--select-window-by-buffer-name "*MPC Album|Playlists*"))
 
 (defun mpc-bind--bind-mpc-commands ()
   "Bind mpc commands to a keymap, returning the keymap."
@@ -38,8 +56,10 @@
     ()
   "Bind moving to a mpc window to a keymap, returning the keymap."
   (let ((keymap (make-sparse-keymap)))
-    (dolist (pair '(("g" . mpc-bind-select-genre)
-		    ))
+    (dolist (pair '(("g" . mpc-bind-genre)
+		    ("s" . mpc-bind-songs)
+		    ("a" . mpc-bind-artist)
+		    ("p" . mpc-bind-playlists)))
       (define-key keymap (car pair) (cdr pair)))
     keymap))
 
