@@ -48,11 +48,14 @@
   "Bind mpc commands to a keymap, returning the keymap."
   (let ((keymap (make-sparse-keymap)))
     (dolist (pair '(("u" . mpc-update)
-		    ("a" . mpc-playlist-add)
 		    ("t" . mpc-select-toggle)
 		    ("e" . mpc-select-extend)
+		    ("l" . mpc-playlist)
+		    ("a" . mpc-playlist-add)
+		    ("r" . mpc-playlist-rename)
+		    ("c" . mpc-playlist-create)
 		    ("d" . mpc-playlist-delete)
-		    ("l" . mpc-playlist)))
+		    ("D" . mpc-playlist-destroy)))
       (define-key keymap (car pair) (cdr pair)))
     keymap))
 
